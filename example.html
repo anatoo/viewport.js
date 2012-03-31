@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>viewport.js example</title>
+<script type="text/javascript" src="./viewport.js"></script>
+<script type="text/javascript">viewport({
+    width : 500
+});</script>
+
+<style type="text/css">
+body {
+    font-family : "Helvetica";
+    margin : 20px 0 0 0;
+    padding : 0;
+    text-align : center;
+    overflow : hidden;
+}
+h1 {
+    text-align : center;
+}
+.box {
+    background-color: #ccc;
+    height : 100px;
+    color : #fff;
+    text-align : center;
+    vertical-align : middle;
+    line-height: 100px;
+    font-size: 20px;
+    border-right: 1px solid #000;
+}
+</style>
+</head>
+<body>
+
+<h1>viewport.js example</h1>
+
+<p>UserAgent: <script type="text/javascript">document.write(navigator.userAgent);</script></p>
+
+<div style="width : 499px" class="box">
+&nbsp;500px&nbsp;
+</div>
+
+<div style="width : 399px" class="box">
+&nbsp;400px&nbsp;
+</div>
+
+<div style="width : 299px" class="box">
+&nbsp;300px&nbsp;
+</div>
+
+</body>
+</html>
