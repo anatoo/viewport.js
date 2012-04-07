@@ -16,7 +16,7 @@ iOS, android, PCブラウザの全てデバイスで統一的にviewportを設�
 ダウンロード
 ----
 
-[viewport.js](./viewport.js)
+[viewport.js](https://raw.github.com/anatoo/viewport.js/master/viewport.js)
 
 概要
 ----

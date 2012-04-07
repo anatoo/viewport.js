@@ -16,7 +16,7 @@ Support
 Donwload
 ----
 
-[viewport.js](./viewport.js)
+[viewport.js](https://raw.github.com/anatoo/viewport.js/master/viewport.js)
 
 Overview
 ----
