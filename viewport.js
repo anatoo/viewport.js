@@ -68,7 +68,7 @@
         window.viewport = function(params) {
             d("iOS is detected");
             params = merge(defaultParams, params);
-            document.write('<meta name="viewport" content="width=' + params.width + ',user-scalable=false" />');
+            document.write('<meta name="viewport" content="width=' + params.width + '" />');
 d(params.width);
             window.viewport.adjust = function() {};
         };
@@ -77,7 +77,7 @@ d(params.width);
             d("Android is detected");
             params = merge(defaultParams, params);
 
-            document.write('<meta name="viewport" content="width=device-width;target-densitydpi=device-dpi">');
+            document.write('<meta name="viewport" content="width=device-width;target-densitydpi=device-dpi" />');
 
             window.viewport.adjust = function() {
                 var scale = window.innerWidth / params.width;
