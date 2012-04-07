@@ -34,7 +34,8 @@
     };
 
     var defaultParams = {
-        width : 500
+        width : 640,
+        onAdjustment : function(scale) { }
     };
 
     var merge = function(base, right) {
@@ -68,6 +69,9 @@
             d("iOS is detected");
             params = merge(defaultParams, params);
             document.write('<meta name="viewport" content="width=' + params.width + ',user-scalable=false" />');
+            document.addEventListener('DOMContentLoaded', function() {
+                params.onAdjustment(null);
+            });
         };
     } else if (isAndroid()) {
         window.viewport = function(params) {
@@ -80,6 +84,7 @@
                 var scale = window.innerWidth / params.width;
                 window.viewport.scale = scale;
                 zoom(scale);
+                params.onAdjustment(scale);
             };
 
             var orientationChanged = (function() {
@@ -110,6 +115,7 @@
                 var width = window.innerWidth || document.body.clientWidth || document.documentElement.clientWidth;
                 var scale = width / params.width;
                 zoom(width / params.width);
+                params.onAdjustment(scale);
             };
 
             window.addEventListener("resize", function() {
