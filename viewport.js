@@ -22,8 +22,8 @@
  */
 
 (function() {
-    var isDev = false;
-    var d = isDev ? alert : function(line) { console.log(line); };
+    var IS_DEV = false;
+    var d = IS_DEV ? alert : function(line) { console.log(line); };
 
     var isIos = function() {
         return !!navigator.userAgent.match(/iPhone|iPod|webmate/);
@@ -69,9 +69,8 @@
             d("iOS is detected");
             params = merge(defaultParams, params);
             document.write('<meta name="viewport" content="width=' + params.width + ',user-scalable=false" />');
-            document.addEventListener('DOMContentLoaded', function() {
-                params.onAdjustment(null);
-            });
+d(params.width);
+            window.viewport.adjust = function() {};
         };
     } else if (isAndroid()) {
         window.viewport = function(params) {
@@ -80,7 +79,7 @@
 
             document.write('<meta name="viewport" content="width=device-width;target-densitydpi=device-dpi">');
 
-            var adjust = function() {
+            window.viewport.adjust = function() {
                 var scale = window.innerWidth / params.width;
                 window.viewport.scale = scale;
                 zoom(scale);
@@ -97,13 +96,28 @@
                 };
             })();
 
+            var aspectRatioChanged = (function() {
+                var oldAspect = window.innerWidth / window.innerHeight;
+                return function() {
+                    var aspect = window.innerWidth / window.innerHeight;
+                    var changed = Math.abs(aspect - oldAspect) > 0.0001;
+                    oldAspect = aspect;
+
+                    alert("aspect ratio changed");
+                    return changed;
+                };
+            });
+
             window.addEventListener("resize", function() {
-                if (orientationChanged()) {
-                    adjust();
+                var left = orientationChanged();
+                var right = aspectRatioChanged();
+
+                if (left || right) {
+                    window.viewport.adjust();
                 }
             }, false);
             document.addEventListener('DOMContentLoaded', function() {
-                adjust();
+                window.viewport.adjust();
             });
         };
     } else {
@@ -111,7 +125,7 @@
             params = merge(defaultParams, params);
             d("PC browser is detected");
 
-            var adjust = function() {
+            window.viewport.adjust = function() {
                 var width = window.innerWidth || document.body.clientWidth || document.documentElement.clientWidth;
                 var scale = width / params.width;
                 zoom(width / params.width);
@@ -119,10 +133,10 @@
             };
 
             window.addEventListener("resize", function() {
-                adjust();
+                window.viewport.adjust();
             }, false);
             document.addEventListener("DOMContentLoaded", function() {
-                adjust();
+                window.viewport.adjust();
             });
         };
     }
@@ -132,4 +146,5 @@
     window.viewport.isPCBrowser = function() {
         return !isIos() && !isAndroid();
     };
+    window.viewport.adjust = function() { };
 })();

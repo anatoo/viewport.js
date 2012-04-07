@@ -2,13 +2,12 @@
 <head>
 <title>viewport.js example</title>
 <script type="text/javascript" src="./viewport.js"></script>
-<script type="text/javascript">viewport({
-    width : 500,
-    onAdjustment : update
-});
+<script type="text/javascript" src="./prettify.js"></script>
+<script type="text/javascript">
+
 function update(scale) {
     document.getElementById("useragent").textContent = navigator.userAgent;
-    document.getElementById("scale").textContent = scale || "null";
+    document.getElementById("scale").textContent = scale || "none";
 
     if (viewport.isIos()) {
         document.getElementById("device").textContent = "iOS";
@@ -18,8 +17,24 @@ function update(scale) {
         document.getElementById("device").textContent = "PC";
     }
 }
+
+viewport({
+    width : 600,
+    onAdjustment : update
+});
+
+window.addEventListener("load", function() {
+    prettyPrint();
+});
+
+if (viewport.isIos()) {
+    window.addEventListener("load", function() {
+        update(null);
+    });
+}
 </script>
 
+<link rel="stylesheet" type="text/css" href="prettify.css">
 <style type="text/css">
 body {
     font-family : "Helvetica";
@@ -27,18 +42,21 @@ body {
     padding : 0;
     overflow : hidden;
 }
+pre {
+    font-size: 10px;
+}
 h1 {
     text-align : center;
-    font-size: 250%;
-    margin: 1em 0;
+    font-size: 300%;
+    margin: 20px 0;
 }
 .box {
     background-color: #ccc;
-    height : 100px;
+    height : 50px;
     color : #fff;
     text-align : center;
     vertical-align : middle;
-    line-height: 100px;
+    line-height: 50px;
     font-size: 20px;
     border-right: 1px solid #000;
 }
@@ -51,6 +69,7 @@ p {
     color : white;
     border-radius : 4px;
     padding : 0 4px;
+    font-weight : bold;
 }
 .value {
     display : inline-block;
@@ -61,25 +80,36 @@ p {
 </head>
 <body>
 
-<h1><span style="font-size: 100%">viewport.js</span> <span style="font-weight: normal;">example</span></h1>
+<h1>viewport.js <span style="font-weight: normal;">example</span></h1>
 
-<p><span class="label">UserAgent</span> <span id="useragent" class="value">...</span></p>
+<p><span class="label" style="margin: 0;">Code</span><pre class="prettyprint lang-html" style="border: 0px; padding : 0; margin : 0em 1em 0em 1em;">
+&lt;script type=&quot;text/javascript&quot; src=&quot;viewport.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+viewport({
+    width : 600,
+    onAdjustment : function(scale) {
+        // write code something.
+    }
+});
+&lt;/script&gt;</pre></p>
 
-<p><span class="label">Computed scale</span> <span id="scale" class="value">...</span></p>
-
-<p><span class="label">Detected device</span> <span id="device" class="value">...</span></p>
-
-<div style="width : 499px" class="box">
-&nbsp;500px&nbsp;
+<div style="width : 599px; margin-top: 1em;" class="box">
+&nbsp;600px&nbsp;
 </div>
 
 <div style="width : 399px" class="box">
 &nbsp;400px&nbsp;
 </div>
 
-<div style="width : 299px" class="box">
-&nbsp;300px&nbsp;
+<div style="width : 199px" class="box">
+&nbsp;200px&nbsp;
 </div>
+
+<p><span class="label">UserAgent</span> <span id="useragent" class="value">...</span></p>
+
+<p><span class="label">Computed scale</span> <span id="scale" class="value">...</span></p>
+
+<p><span class="label">Detected device</span> <span id="device" class="value">...</span></p>
 
 </body>
 </html>
