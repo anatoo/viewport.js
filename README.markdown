@@ -1,7 +1,7 @@
 viewport.js
 ====
 
-viewport.js provide unification to set viewport for iOS, android and PC Browsers. 
+viewport.js provide unification to set up a viewport for iOS browser, android browser and PC Browsers. 
 
 Support
 ----
@@ -13,7 +13,7 @@ Support
 * Chrome18.0.1025.151
 * Safari5.1.5
 
-Donwload
+Download
 ----
 
 [viewport.js](https://raw.github.com/anatoo/viewport.js/master/viewport.js)
@@ -21,9 +21,11 @@ Donwload
 Overview
 ----
 
-In case of iOS, you cat write viewport meta tag to setting viewport.
+In case of iOS, you can write viewport meta tag to setting viewport.
 
 In case of android, android support viewport meta tag too. But viewport's width is not available. And PC Browsers does not support it.
+
+By using viewport.js, you can easily set up a viewport for your HTML.
 
 Usage
 ----
@@ -36,6 +38,9 @@ Quick example:
     <script type="text/javascript">
     viewport({width : 640});
     </script>
+    ...
+
+You must call 'viewport' function because 'viewport' function write a meta tag.
 
 How it works
 ----

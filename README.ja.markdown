@@ -25,6 +25,8 @@ iOS端末のブラウザでは、HTML内にviewportメタタグを埋め込む�
 
 androidでは、viewportメタタグ自体はサポートされていますが、widthを設定することができません。また、PCでのブラウザではそもそもviewportメタタグがサポートされていません。
 
+viewport.jsを使うことで、viewportをHTML内に簡単に設定することができます。
+
 使い方
 ----
 
@@ -36,6 +38,7 @@ androidでは、viewportメタタグ自体はサポートされていますが�
     <script type="text/javascript">
     viewport({width : 640});
     </script>
+    ...
 
 androidやPCのブラウザの場合、メタタグを書き込むだけではなく、JavaScriptとCSSによってviewportをエミュレーションします。
 
