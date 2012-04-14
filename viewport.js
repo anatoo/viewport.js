@@ -26,7 +26,7 @@
     var d = IS_DEV ? alert : function(line) { console.log(line); };
 
     var isIos = function() {
-        return !!navigator.userAgent.match(/iPhone|iPod|webmate/);
+        return !!navigator.userAgent.match(/iPhone|iPod|webmate|iPad/);
     };
 
     var isAndroid = function() {
